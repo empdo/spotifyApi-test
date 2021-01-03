@@ -7,6 +7,10 @@ html {
   background-color: black;
 }
 
+:root {
+  --track_img_url: url("");
+}
+
 * {
   margin: 0;
 }
@@ -15,20 +19,75 @@ html {
   display: grid;
   color: white;
   height: 100%;
+  width: 100%;
 
-  grid-template-areas: "yesihaveonegridrow noihavetwo sikethreerows";
-  grid-template-columns: 1fr 1fr 1fr;
-
-  padding-left: 5vw;
-  padding-right: 5vw;
+  grid-template-areas:
+    "top_left top_mid top_right"
+    "mid_left mid_mid mid_right"
+    "bottom_left bottom_mid bottom_right";
+  grid-template-columns: auto;
+  grid-template-rows: 1fr 3fr 1fr;
 }
 
 #track_img {
+  width: 80%;
+  position: absolute;
+}
+#track_img_container {
+  position: relative;
+  height: 100%;
   width: 100%;
-  grid-area: yesihaveonegridrow;
+
+  grid-area: mid_left;
   place-self: center;
+
+  background-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 1) 10%,
+      rgba(0, 0, 0, 0.6768867924528301) 60%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    var(--track_img_url);
+  background-size: cover;
 }
 #track_title {
-  grid-area: yesihaveonegridrow;
+  grid-area: bottom_left;
   place-self: center;
+}
+
+#progress_bg {
+  background-color: lightgray;
+
+  width: 100%;
+  height: 5px;
+  position: relative;
+
+  border-radius: 12px;
+  display: block;
+}
+
+#progress {
+  background-color: white;
+  position: absolute;
+
+  height: 100%;
+  width: 50%;
+
+  border-radius: 12px;
+}
+
+#time_container {
+  position: relative;
+  width: 100%;
+  height: 10px;
+  display: block;
+  font-size: 10px;
+}
+#progress_time {
+  position: absolute;
+  left: 0;
+}
+#total_time {
+  position: absolute;
+  right: 0;
 }

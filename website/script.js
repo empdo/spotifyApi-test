@@ -10,6 +10,13 @@ async function getCurrentTrack(){
 	const trackJson = await trackRespons.json();
 	return [trackJson, trackRespons.ok];
 }
+        
+function getCoolTime(timeStamp){
+	var secs = timeStamp / 1000;
+	var minutes = Math.floor(secs / 60);
+	var track_secs = Math.floor((secs % 60));
+	return(`${minutes}:${track_secs < 10 ? "0" + track_secs : track_secs}`);
+}
 
 function handleTrackRespons(data, depth){
 	if(!depth){
@@ -18,8 +25,10 @@ function handleTrackRespons(data, depth){
 	var response = data[1];
 	if(!response){
 		console.log("Bad token, retriving new one...")
-		var refreshToken = sessionStorage.getItem("refreshcode");
-		console.log(refreshToken);
+		var refreshToken = false //sessionStorage.getItem("refreshcode");
+		sessionStorage.clear()
+		localStorage.clear()
+
 		if(!refreshToken){
 			window.location.assign(redirect_url);
 			return;
@@ -39,8 +48,17 @@ function handleTrackRespons(data, depth){
 
 	} else if (response){
 		console.log("showing stuff", data[0])
-		document.querySelector("#track_img").src = data[0].item.album.images[0].url;
+		document.documentElement.style.setProperty('--track_img_url', `url("${data[0].item.album.images[0].url}")`);
 		document.querySelector("#track_title").innerHTML = data[0].item.name;
+
+		var progress = data[0].progress_ms;
+		var timeStamp = data[0].timestamp;
+		var correctedProgress = (new Date().getTime() - timeStamp) + progress;
+		var trackLength = data[0].item.duration_ms;
+
+		document.querySelector("#progress").style.width = (progress / trackLength) * 100 + "%";
+		document.querySelector("#progress_time").textContent = getCoolTime(progress);
+		document.querySelector("#total_time").textContent = getCoolTime(trackLength);
 	}
 }
 
