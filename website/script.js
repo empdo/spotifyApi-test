@@ -1,7 +1,21 @@
 "use strict";
 
 //hämta track, om respons code == 401, refresha token med sessionstorage.refreshcode om inte den finns gå in på callbacksida
-//
+const pathToIcons = "/home/emil/dev/spotify-api/website/icons/";
+
+var numList = [[5], [1], [2,3,4,6], [7], [8,9,12,18,19,22], [10, 13, 14, 20, 23, 24], [11, 21], [15, 16, 17, 25, 26, 27]]
+var nameList = ["cloud.svg", "day-sunny.svg", "day-sunny-overcast.svg", "fog.svg", "rain-mix.svg", "rain.svg", "thunderstorm.svg", "snow.svg"]
+
+var weathers = {};
+
+for (var i = 0; i < numList.length; i++){
+	numList[i].forEach(num => {
+		weathers[num] = nameList[i];
+	})	
+}
+
+var localTemp = "";
+var localHowTheSkyLooks = "";
 
 async function getCurrentTrack(){
 	const trackUrl = "https://api.spotify.com/v1/me/player";
@@ -9,6 +23,13 @@ async function getCurrentTrack(){
 	console.log(await trackRespons);
 	const trackJson = await trackRespons.json();
 	return [trackJson, trackRespons.ok];
+}
+
+async function getSmhi(){
+	const trackUrl = "https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/16.158/lat/58.5812/data.json";
+	const trackRespons = await fetch(trackUrl)
+	const trackJson = await trackRespons.json();
+	return trackJson;
 }
         
 function getCoolTime(timeStamp){
@@ -71,4 +92,15 @@ function handleTrackRespons(data, depth){
 
 getCurrentTrack().then(data => {
 	handleTrackRespons(data);
+});
+
+getSmhi().then(data => {
+	var currentWheater = (data.timeSeries.find(e => (e.validTime === data.referenceTime ? e : "nej")));
+	localTemp = currentWheater.parameters.find(function (e){
+		return e.name === "t";	
+	}).values[0];
+	localHowTheSkyLooks = currentWheater.parameters.find(function (e){
+		return e.name === "Wsymb2";	
+	}).values[0];
+	console.log(localTemp, localHowTheSkyLooks)
 });

@@ -26,9 +26,16 @@ html {
 
   padding: 20px;
 
-  grid-template-areas: "top_left top_mid top_right";
-  grid-template-columns: auto;
+  grid-template-areas: "left right";
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
+}
+
+#right_side {
+  grid-area: right;
+  display: grid;
+  grid-template-areas: "top" "bottom";
+  grid-template-rows: 1fr 1fr;
 }
 
 #track_img {
