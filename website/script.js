@@ -50,6 +50,12 @@ function handleTrackRespons(data, depth){
 		console.log("showing stuff", data[0])
 		document.documentElement.style.setProperty('--track_img_url', `url("${data[0].item.album.images[0].url}")`);
 		document.querySelector("#track_title").innerHTML = data[0].item.name;
+		
+		var artists = [];
+		for (var x in data[0].item.artists){
+			artists.push(data[0].item.artists[x].name);
+		}
+		document.querySelector("#track_artist").innerHTML = artists.join(" - ");
 
 		var progress = data[0].progress_ms;
 		var timeStamp = data[0].timestamp;
@@ -59,6 +65,7 @@ function handleTrackRespons(data, depth){
 		document.querySelector("#progress").style.width = (progress / trackLength) * 100 + "%";
 		document.querySelector("#progress_time").textContent = getCoolTime(progress);
 		document.querySelector("#total_time").textContent = getCoolTime(trackLength);
+
 	}
 }
 

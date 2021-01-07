@@ -13,6 +13,9 @@ html {
 
 * {
   margin: 0;
+  font-family: "Raleway", sans-serif;
+
+  box-sizing: border-box;
 }
 
 #container {
@@ -21,24 +24,43 @@ html {
   height: 100%;
   width: 100%;
 
-  grid-template-areas:
-    "top_left top_mid top_right"
-    "mid_left mid_mid mid_right"
-    "bottom_left bottom_mid bottom_right";
+  padding: 20px;
+
+  grid-template-areas: "top_left top_mid top_right";
   grid-template-columns: auto;
-  grid-template-rows: 1fr 3fr 1fr;
+  grid-template-rows: auto;
 }
 
 #track_img {
   width: 80%;
   position: absolute;
 }
+
+#lower_part_of_thingeliding {
+  grid-area: bottom;
+  width: 80%;
+
+  display: grid;
+  justify-items: center;
+}
+
+#track_container {
+  display: grid;
+  grid-template-areas: "top" "bottom";
+  grid-template-rows: 4fr 2fr;
+  grid-template-columns: 100%;
+
+  justify-items: center;
+
+  height: 100%;
+  width: 100%;
+}
 #track_img_container {
   position: relative;
   height: 100%;
   width: 100%;
 
-  grid-area: mid_left;
+  grid-area: top;
   place-self: center;
 
   background-image: linear-gradient(
@@ -50,16 +72,29 @@ html {
     var(--track_img_url);
   background-size: cover;
 }
+
+#info {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+}
+
 #track_title {
-  grid-area: bottom_left;
-  place-self: center;
+  font-size: 30px;
+  display: block;
+  font-weight: 500;
+}
+
+#track_artist {
+  color: darkgray;
+  font-size: 18px;
 }
 
 #progress_bg {
-  background-color: lightgray;
+  background-color: #403f3f;
 
   width: 100%;
-  height: 5px;
+  height: 6px;
   position: relative;
 
   border-radius: 12px;
@@ -86,8 +121,12 @@ html {
 #progress_time {
   position: absolute;
   left: 0;
+
+  font-size: 23px;
 }
 #total_time {
   position: absolute;
   right: 0;
+
+  font-size: 23px;
 }
