@@ -1,12 +1,12 @@
-body,
 html {
-  height: 100%;
-  width: 100%;
   margin: 0;
-
+  background-color: #111;
+}
+body {
+  height: 720px;
+  width: 1280px;
   background-color: black;
 }
-
 :root {
   --track_img_url: url("");
 }
@@ -70,12 +70,7 @@ html {
   grid-area: top;
   place-self: center;
 
-  background-image: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 1) 10%,
-      rgba(0, 0, 0, 0.6768867924528301) 60%,
-      rgba(255, 255, 255, 0) 100%
-    ),
+  background-image: linear-gradient(180deg, transparent, black),
     var(--track_img_url);
   background-size: cover;
 }
@@ -94,7 +89,7 @@ html {
 
 #track_artist {
   color: darkgray;
-  font-size: 18px;
+  font-size: 23px;
 }
 
 #progress_bg {
@@ -136,4 +131,37 @@ html {
   right: 0;
 
   font-size: 23px;
+}
+
+#weather_container {
+  justify-self: center;
+
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  grid-template-areas: "top_left top_right" "bottom bottom";
+
+  font-size: 30px;
+
+  width: 60%;
+  height: 60%;
+}
+
+#weatherIcon {
+  filter: invert(1);
+  height: 150px;
+
+  grid-area: top_left;
+}
+
+#weather {
+  grid-area: bottom;
+}
+
+#tempature {
+  grid-area: top_right;
+  justify-self: start;
+  align-self: center;
+
+  font-size: 60px;
 }

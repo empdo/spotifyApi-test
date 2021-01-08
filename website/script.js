@@ -1,12 +1,12 @@
 "use strict";
 
 //hämta track, om respons code == 401, refresha token med sessionstorage.refreshcode om inte den finns gå in på callbacksida
-const pathToIcons = "/home/emil/dev/spotify-api/website/icons/";
+const pathToIcons = "/icons/";
 
 var numList = [[5], [1], [2,3,4,6], [7], [8,9,12,18,19,22], [10, 13, 14, 20, 23, 24], [11, 21], [15, 16, 17, 25, 26, 27]]
 var nameList = ["cloud.svg", "day-sunny.svg", "day-sunny-overcast.svg", "fog.svg", "rain-mix.svg", "rain.svg", "thunderstorm.svg", "snow.svg"]
 
-var weathers = {};
+var weathers = [];
 
 for (var i = 0; i < numList.length; i++){
 	numList[i].forEach(num => {
@@ -103,4 +103,9 @@ getSmhi().then(data => {
 		return e.name === "Wsymb2";	
 	}).values[0];
 	console.log(localTemp, localHowTheSkyLooks)
-});
+
+	document.querySelector("#weather").innerHTML = weathers[localHowTheSkyLooks];
+	document.querySelector("#tempature").innerHTML = localTemp + "&#8451;";
+	document.querySelector("#weatherIcon").src = pathToIcons + weathers[localHowTheSkyLooks];
+
+}); 
