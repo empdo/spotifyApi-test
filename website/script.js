@@ -104,7 +104,6 @@ getSmhi().then(data => {
 	}).values[0];
 	console.log(localTemp, localHowTheSkyLooks)
 
-	document.querySelector("#weather").innerHTML = weathers[localHowTheSkyLooks];
 	document.querySelector("#tempature").innerHTML = localTemp + "&#8451;";
 	document.querySelector("#weatherIcon").src = pathToIcons + weathers[localHowTheSkyLooks];
 

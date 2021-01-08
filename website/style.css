@@ -26,15 +26,15 @@ body {
 
   padding: 20px;
 
-  grid-template-areas: "left right";
-  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "t_left t_right" "b_left b_right";
+  grid-template-columns: 2fr 3fr;
   grid-template-rows: auto;
 }
 
 #right_side {
-  grid-area: right;
+  grid-area: t_right;
   display: grid;
-  grid-template-areas: "top" "bottom";
+  grid-template-areas: "top_l top_r" "bottom bottom";
   grid-template-rows: 1fr 1fr;
 }
 
@@ -52,6 +52,7 @@ body {
 }
 
 #track_container {
+  grid-area: t_left;
   display: grid;
   grid-template-areas: "top" "bottom";
   grid-template-rows: 4fr 2fr;
@@ -82,9 +83,10 @@ body {
 }
 
 #track_title {
-  font-size: 30px;
   display: block;
+  font-size: 30px;
   font-weight: 500;
+  text-align: center;
 }
 
 #track_artist {
@@ -94,6 +96,8 @@ body {
 
 #progress_bg {
   background-color: #403f3f;
+
+  margin-top: 20px;
 
   width: 100%;
   height: 6px;
@@ -134,17 +138,21 @@ body {
 }
 
 #weather_container {
-  justify-self: center;
+  grid-area: top_r;
+
+  margin-right: 60px;
+  margin-top: 40px;
+
+  align-self: start;
+  justify-self: end;
 
   display: grid;
-  align-content: center;
   justify-items: center;
   grid-template-areas: "top_left top_right" "bottom bottom";
 
   font-size: 30px;
 
   width: 60%;
-  height: 60%;
 }
 
 #weatherIcon {
@@ -164,4 +172,46 @@ body {
   align-self: center;
 
   font-size: 60px;
+}
+
+#calender {
+  grid-area: top_l;
+
+  font-size: 40px;
+  padding-left: 40px;
+
+  justify-self: start;
+  align-self: start;
+  display: grid;
+}
+
+#time {
+  display: block;
+  justify-self: center;
+  padding-bottom: 10px;
+
+  font-size: 70px;
+  font-weight: 500;
+}
+
+#clock {
+  display: block;
+
+  background-color: #ddd;
+  color: #242424;
+
+  width: 200px;
+  padding: 15px;
+
+  font-weight: 700;
+  text-align: center;
+}
+
+#date {
+  display: block;
+}
+
+#month {
+  font-size: 40px;
+  font-weight: 700;
 }
