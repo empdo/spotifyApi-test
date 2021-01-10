@@ -3,8 +3,8 @@ html {
   background-color: #111;
 }
 body {
-  height: 720px;
-  width: 1280px;
+  height: 1280px;
+  width: 780px;
   background-color: black;
 }
 :root {
@@ -26,16 +26,15 @@ body {
 
   padding: 20px;
 
-  grid-template-areas: "t_left t_right" "b_left b_right";
-  grid-template-columns: 2fr 3fr;
-  grid-template-rows: auto;
+  grid-template-areas: "t_right t_right" "bottom bottom";
 }
 
 #right_side {
   grid-area: t_right;
   display: grid;
   grid-template-areas: "top_l top_r" "bottom bottom";
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr;
 }
 
 #track_img {
@@ -52,7 +51,7 @@ body {
 }
 
 #track_container {
-  grid-area: t_left;
+  grid-area: bottom;
   display: grid;
   grid-template-areas: "top" "bottom";
   grid-template-rows: 4fr 2fr;
@@ -140,11 +139,10 @@ body {
 #weather_container {
   grid-area: top_r;
 
-  margin-right: 60px;
   margin-top: 40px;
 
-  align-self: start;
-  justify-self: end;
+  align-self: center;
+  justify-self: start;
 
   display: grid;
   justify-items: center;
@@ -180,8 +178,8 @@ body {
   font-size: 40px;
   padding-left: 40px;
 
-  justify-self: start;
-  align-self: start;
+  justify-self: center;
+  align-self: center;
   display: grid;
 }
 
@@ -192,6 +190,7 @@ body {
 
   font-size: 70px;
   font-weight: 500;
+  width: 100%;
 }
 
 #clock {
