@@ -13,8 +13,7 @@ body {
 
 * {
   margin: 0;
-  font-family: "Raleway", sans-serif;
-
+  font-family: "Noto Sans", sans-serif;
   box-sizing: border-box;
 }
 
@@ -26,15 +25,16 @@ body {
 
   padding: 20px;
 
-  grid-template-areas: "t_right t_right" "bottom bottom";
+  grid-template-areas: "top top" "middle middle" "bottom bottom";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 2fr 6fr 3fr;
 }
 
 #right_side {
-  grid-area: t_right;
+  grid-area: top;
   display: grid;
   grid-template-areas: "top_l top_r" "bottom bottom";
-  grid-template-rows: auto;
-  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 }
 
 #track_img {
@@ -51,16 +51,18 @@ body {
 }
 
 #track_container {
-  grid-area: bottom;
+  grid-area: middle;
   display: grid;
   grid-template-areas: "top" "bottom";
   grid-template-rows: 4fr 2fr;
   grid-template-columns: 100%;
 
   justify-items: center;
+  align-self: center;
+  justify-self: center;
 
-  height: 100%;
-  width: 100%;
+  height: 90%;
+  width: 60%;
 }
 #track_img_container {
   position: relative;
@@ -137,20 +139,12 @@ body {
 }
 
 #weather_container {
-  grid-area: top_r;
-
-  margin-top: 40px;
-
-  align-self: center;
-  justify-self: start;
-
   display: grid;
-  justify-items: center;
   grid-template-areas: "top_left top_right" "bottom bottom";
+  height: 120px;
 
-  font-size: 30px;
-
-  width: 60%;
+  align-content: center;
+  font-size: 90px;
 }
 
 #weatherIcon {
@@ -172,35 +166,35 @@ body {
   font-size: 60px;
 }
 
-#calender {
-  grid-area: top_l;
-
-  font-size: 40px;
-  padding-left: 40px;
+#calender-weather {
+  display: flex;
+  grid-area: bottom;
+  width: auto;
+  height: auto;
 
   justify-self: center;
-  align-self: center;
-  display: grid;
+
+  font-size: 40px;
 }
 
 #time {
-  display: block;
-  justify-self: center;
-  padding-bottom: 10px;
+  display: inline-block;
+  justify-self: end;
+  align-self: center;
 
-  font-size: 70px;
-  font-weight: 500;
-  width: 100%;
+  letter-spacing: 4px;
+  height: auto;
+
+  font-size: 85px;
+  font-weight: 700;
 }
 
 #clock {
-  display: block;
-
-  background-color: #ddd;
-  color: #242424;
+  display: top_r;
 
   width: 200px;
-  padding: 15px;
+  height: 120px;
+  padding-top: 15px;
 
   font-weight: 700;
   text-align: center;
@@ -208,9 +202,10 @@ body {
 
 #date {
   display: block;
+  font-size: 30px;
 }
 
 #month {
   font-size: 40px;
-  font-weight: 700;
+  font-weight: 600;
 }
