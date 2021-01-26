@@ -1,8 +1,8 @@
 "use strict";
 
 var scope = 'user-read-playback-state';
-var clientId = '36ad00d5f98e4831901e3f3e1e067826';
-var clientSecret = 'c36732aa8b384a80827773a1bbf52e31';
+var clientId = '';
+var clientSecret = '';
 var port = '8000'
 var redirect_url = `http://localhost:${port}/callback.html`;	
 
